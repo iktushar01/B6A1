@@ -35,3 +35,12 @@ class Person{
     }
 }
 
+
+type Item = {
+    title : string;
+    rating : number;
+}
+function filterByRating(Items: Item[]): Item[]{
+    return Items.filter((item) => item.rating >= 4)
+}
+
