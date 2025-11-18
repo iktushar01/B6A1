@@ -66,3 +66,27 @@ function printBookDetails(book: Book):void {
     `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availableBooks}`
   );
 }
+
+type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+const calculateTotalPrice = (products: Product[]): number => {
+  if (products.length === 0) return 0;
+
+  return products
+    .map((item) => {
+      const basePrice = item.price * item.quantity;
+
+      if (item.discount) {
+        const discountAmount = (basePrice * item.discount) / 100;
+        return basePrice - discountAmount;
+      }
+
+      return basePrice;
+    })
+    .reduce((sum, current) => sum + current, 0);
+};
